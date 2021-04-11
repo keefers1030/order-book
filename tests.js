@@ -8,7 +8,6 @@ describe('Order Book', () => {
     it('adds an order to the book when the book is empty and thus cannot fulfill the order', () => {
       const existingBook = []
       const incomingOrder = { type: 'sell', quantity: 10, price: 6150 }
-
       const updatedBook = reconcileOrder(existingBook, incomingOrder)
 
       expect(updatedBook).to.deep.equal([{ type: 'sell', quantity: 10, price: 6150 }])
