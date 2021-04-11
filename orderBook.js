@@ -1,17 +1,13 @@
 reconcileOrder = (existingBook, incomingOrder) => {
       // adds an order to the book when the book is empty and thus cannot fulfill the order
 
-      // define the book as an array
-
       // check to see if the book is empty
+      if (existingBook.length === 0) {
+            // if book is empty, add it to the array and give a "cannot fulfill order message"
+            return incomingOrder
+            }
+      }
 
-      // if book is empty, add it to the array and give a "cannot fulfill order message"
-      if(existingBook.length === 0) {
-            console.log("Array is empty!")
-}
-
-
-}
 
 
 
@@ -35,11 +31,11 @@ reconcileOrder = (existingBook, incomingOrder) => {
 let existingBook = [];
 
 let incomingOrder = {
-      type: '',
-      quantity: null,
-      price: null
+      type: 'sell',
+      quantity: 10,
+      price: 6150
 }
 
 console.log(reconcileOrder(existingBook, incomingOrder))
 
-module.exports = recon
+module.exports = reconcileOrder
