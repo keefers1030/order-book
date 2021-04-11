@@ -1,12 +1,19 @@
 reconcileOrder = (existingBook, incomingOrder) => {
+  let updatedBook = []
       // adds an order to the book when the book is empty and thus cannot fulfill the order
 
-      // check to see if the book is empty
-      if (existingBook.length === 0) {
-            // if book is empty, add it to the array and give a "cannot fulfill order message"
-            return incomingOrder
-            }
-      }
+  // check to see if the book is empty
+  if (existingBook.length === 0) {
+    // if book is empty, add it to the array and give a "cannot fulfill order message"
+    updatedBook.push([])
+    console.log('Cannot fulfill order')
+
+  }
+  else if (existingBook.type === incomingOrder.type) {
+    //add order to existing book
+    orderBook.push(type, quantity, price)
+  }
+}
 
 
 
@@ -31,9 +38,9 @@ reconcileOrder = (existingBook, incomingOrder) => {
 let existingBook = [];
 
 let incomingOrder = {
-      type: 'sell',
-      quantity: 10,
-      price: 6150
+  type: 'sell',
+  quantity: 10,
+  price: 6150
 }
 
 console.log(reconcileOrder(existingBook, incomingOrder))
