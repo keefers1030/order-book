@@ -6,29 +6,21 @@ const reconcileOrder = (existingBook, incomingOrder) => {
     return existingBook
   }
 
-  for (let i = 0; i < existingBook.length; i++) {
-    while (existingBook[i].type === incomingOrder.type || existingBook[i].type !== incomingOrder.type) {
+
+  while (existingBook.length > 0 && incomingOrder.quantity > 0) {
+    if (existingBook.type === incomingOrder.type || existingBook.type !== incomingOrder.type) {
       existingBook.push((incomingOrder))
-      return existingBook
     }
-    while (incomingOrder.quantity === existingBook[i].quantity) {
-      existingBook.shift(({ 'type': incomingOrder.type, 'quantity': incomingOrder.quantity, 'price': incomingOrder.price }))
-
-      return existingBook
+    // fulfill order(add order to beginning) --- and then remove duplicate order
+    if (incomingOrder.quantity === existingBook.quantity) {
+      existingBook.unshift((incomingOrder)) && existingBook.shift(incomingOrder.quantity === existingBook.quantity)
     }
-  }
+
+    // fulfills an order and reduces the matching order when the book contains a matching order of a larger quantity
+    if (incomingOrder.quantity < existingBook.quantity) {
 
 
-
-
-  for (let i = 0; i < existingBook.length; i++) {
-    if
-      (incomingOrder.quantity > existingBook[i].quantity) {
-      existingBook.shift(({ 'type': incomingOrder.type, 'quantity': incomingOrder.quantity, 'price': incomingOrder.price }))
-
-      return existingBook
-
-    }
+    return existingBook
   }
 }
 
