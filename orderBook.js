@@ -5,35 +5,31 @@ const reconcileOrder = (existingBook, incomingOrder) => {
 
     return existingBook
   }
-
-  if (existingBook[0].type === incomingOrder.type || existingBook[0].type !== incomingOrder.type) {
-    existingBook.push(({ 'type': incomingOrder.type, 'quantity': incomingOrder.quantity, 'price': incomingOrder.price }))
-    return existingBook
-
-}
-
   /*
-    do {
-      existingBook.push(({ 'type': incomingOrder.type, 'quantity': incomingOrder.quantity, 'price': incomingOrder.price }))
-
+    for (let i = 0; i < existingBook.length; i++) {
+      if (existingBook[i].type === incomingOrder.type || existingBook[i].type !== incomingOrder.type) {
+        existingBook.push(({ 'type': incomingOrder.type, 'quantity': incomingOrder.quantity, 'price': incomingOrder.price }))
+  
+        return existingBook
+      }
     }
-    while (existingBook.type === incomingOrder.type) {
+    */
+  for (let i = 0; i < existingBook.length; i++) {
+    if
+      (incomingOrder.quantity === existingBook[i].quantity) {
+      existingBook.shift(({ 'type': incomingOrder.type, 'quantity': incomingOrder.quantity, 'price': incomingOrder.price }))
 
       return existingBook
     }
-  
+  }
 
-  do {
-    existingBook.shift(({ 'type': incomingOrder.type, 'quantity': incomingOrder.quantity, 'price': incomingOrder.price }))
+  for (let i = 0; i < existingBook.length; i++) {
 
-    return existingBook
-  } while (existingBook.quantity == incomingOrder.quantity)
+
 }
 
-
-const fullfillOrder = (existingBook, incomingOrder) => {
-}
-
+//const existingBook = [{ type: 'buy', quantity: 10, price: 6150 }, { type: 'sell', quantity: 12, price: 6250 }]
+//const incomingOrder = { type: 'sell', quantity: 10, price: 6150 }
 
 // adds an order to the book when the book has orders of the corresponding type (i.e. a sell with no buys)
 // check to see the status of the book (what orders it has)
@@ -50,13 +46,7 @@ const fullfillOrder = (existingBook, incomingOrder) => {
 
 // update book
 
-
-
-
-
-*/
-}
-const existingBook = [{ type: 'sell', quantity: 10, price: 6150 }]
-const incomingOrder = { type: 'sell', quantity: 12, price: 6000 }
-reconcileOrder (existingBook,incomingOrder)
+// const existingBook = [{ type: 'sell', quantity: 10, price: 6150 }]
+// const incomingOrder = { type: 'sell', quantity: 12, price: 6000 }
+// reconcileOrder(existingBook, incomingOrder)
 module.exports = reconcileOrder
