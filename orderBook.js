@@ -1,26 +1,28 @@
 /* eslint-disable no-console */
 const reconcileOrder = (existingBook, incomingOrder) => {
-  let updatedBook = []
-
   if (existingBook.length === 0) {
     existingBook.push(incomingOrder)
 
     return existingBook
   }
   for (let i = 0; i < existingBook.length; i++) {
-    // fulfill order --- and remove duplicate order of same quantity
-    if ((existingBook[i].quantity === incomingOrder.quantity) &&
+    if ((existingBook[i].type !== incomingOrder.type) &&
+      (existingBook[i].quantity === incomingOrder.quantity) &&
       (existingBook[i].price === incomingOrder.price)) {
-      existingBook.splice(0, 1)
+      existingBook.splice(i, 1)
 
       return existingBook
     }
-    else if ((existingBook[i].quantity === incomingOrder.quantity) &&
+    else if ((existingBook[i].type !== incomingOrder.type) &&
+      (existingBook[i].quantity > incomingOrder.quantity) &&
       (existingBook[i].price === incomingOrder.price)) {
-      existingBook.splice(0, 1)
+      existingBook[i].quantity -= incomingOrder.quantity
+      existingBook.push(existingBook[i])
+      existingBook.splice(i, 1)
 
       return existingBook
     }
+    // needs to be last 
     else if ((existingBook[i].type === incomingOrder.type ||
       existingBook[i].type !== incomingOrder.type)) {
       existingBook.push(incomingOrder)
