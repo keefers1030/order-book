@@ -3,17 +3,18 @@ const { expect } = require('chai')
 const { describe, it } = require('mocha')
 const reconcileOrder = require('./orderBook')
 
+
 describe('Order Book', () => {
   describe('reconcileOrder', () => {
+    // complete
     it('adds an order to the book when the book is empty and thus cannot fulfill the order', () => {
       const existingBook = []
       const incomingOrder = { type: 'sell', quantity: 10, price: 6150 }
-
       const updatedBook = reconcileOrder(existingBook, incomingOrder)
 
       expect(updatedBook).to.deep.equal([{ type: 'sell', quantity: 10, price: 6150 }])
     })
-
+    // complete
     it('adds an order to the book when the book has orders of the corresponding type (i.e. a sell with no buys)', () => {
       const existingBook = [{ type: 'sell', quantity: 10, price: 6150 }]
       const incomingOrder = { type: 'sell', quantity: 12, price: 6000 }
@@ -25,7 +26,7 @@ describe('Order Book', () => {
         { type: 'sell', quantity: 12, price: 6000 }
       ])
     })
-
+    // complete
     it('adds an order to the book when the book has a corresponding order type but it does not match', () => {
       const existingBook = [{ type: 'buy', quantity: 10, price: 6000 }]
       const incomingOrder = { type: 'sell', quantity: 12, price: 6150 }
